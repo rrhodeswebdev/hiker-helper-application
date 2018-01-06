@@ -18,18 +18,18 @@ function userSubmitData() {
 
 console.log("userSubmitData executed");
 
-//API request to Google Maps
+//API request to Google Geocoding Data
 
 function fetchGoogleGeoData(userValue, callback) {
 
   const query = {
-    address:`${userValue}`,
+    address: `${userValue}`,
     key: "AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4"
   }
 
   console.log(query);
 
-$.getJSON(GEOCODE_API, query, callback);
+  $.getJSON(GEOCODE_API, query, callback);
 
 }
 
@@ -82,6 +82,10 @@ function resultList(data) {
     renderResults(item));
 
   $('.js-search-results').html(trailInfo);
+
+  if($('#map').hasClass('hidden')) {
+  $('#map').removeClass('hidden')
+}
 
 }
 
