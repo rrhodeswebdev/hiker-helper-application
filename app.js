@@ -66,7 +66,8 @@ function fetchWeatherData() {
 function renderResults(item) {
   return `
     <div class="individual-trail">
-      <h2>item.name</h2>
+      <h2>${item.name}</h2>
+      <p>${item.location}</p>
     </div>
   `
 }
@@ -75,9 +76,8 @@ function resultList(data) {
 
   console.log(data);
 
-  let trailInfo = data.map(item => {
-    renderResults(item);
-  });
+  let trailInfo = data.trails.map(item =>
+    renderResults(item));
 
   $('.js-search-results').html(trailInfo);
 
