@@ -1,9 +1,14 @@
 #map {
-  width: 560px;
-  height: 400px;
+  width: 750px;
+  height: 452px;
   margin-top: 20px;
 }
 
 .hidden {
   display: none;
+}
+
+input {
+  width: 300px;
+  height: 25px;
 }

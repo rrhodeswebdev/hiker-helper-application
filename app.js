@@ -51,6 +51,25 @@ function fetchTrailData(data, query, callback) {
 
   console.log(newQuery);
 
+  $('#map').append(
+    function initMap() {
+      var myLatLng = {
+        lat: newQuery.lat,
+        lng: newQuery.lon
+      };
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: myLatLng
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Search Input'
+      });
+    })
+
   $.getJSON(GETTRAIL_API, newQuery, resultList)
 
 }
@@ -74,6 +93,7 @@ function renderResults(item) {
   `
 }
 
+
 function resultList(data) {
 
   console.log(data);
@@ -83,10 +103,9 @@ function resultList(data) {
 
   $('.js-search-results').html(trailInfo);
 
-  if($('#map').hasClass('hidden')) {
-  $('#map').removeClass('hidden')
-}
-
+  if ($('#map').hasClass('hidden')) {
+    $('#map').removeClass('hidden')
+  }
 }
 
 //Display detailed information on a specific trail on the search results list

@@ -28,16 +28,7 @@
     </section>
 
     <section>
-      <div id="map" class="hidden">
-        <script>
-           var map;
-           function initMap() {
-             map = new google.maps.Map(document.getElementById('map'), {
-               center: {lat: -34.397, lng: 150.644},
-               zoom: 8
-             });
-           }
-         </script>
+      <div id="map">
 
       </div>
     </section>
@@ -58,10 +49,11 @@
 
     </footer>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK7JalgtMJ-kPgZTM_5iCmZGxMv4y-w58&callback=initMap" async defer></script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="app.js">
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK7JalgtMJ-kPgZTM_5iCmZGxMv4y-w58&callback=initMap" async defer></script>
   </main>
 
 </body>
