@@ -18,18 +18,18 @@ function userSubmitData() {
 
 console.log("userSubmitData executed");
 
-//API request to Google Maps
+//API request to Google Geocoding Data
 
 function fetchGoogleGeoData(userValue, callback) {
 
   const query = {
-    address:`${userValue}`,
+    address: `${userValue}`,
     key: "AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4"
   }
 
   console.log(query);
 
-$.getJSON(GEOCODE_API, query, callback);
+  $.getJSON(GEOCODE_API, query, callback);
 
 }
 
@@ -50,6 +50,25 @@ function fetchTrailData(data, query, callback) {
   }
 
   console.log(newQuery);
+
+  $('#map').append(
+    function initMap() {
+      var myLatLng = {
+        lat: newQuery.lat,
+        lng: newQuery.lon
+      };
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: myLatLng
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Search Input'
+      });
+    })
 
   $.getJSON(GETTRAIL_API, newQuery, resultList)
 
@@ -74,6 +93,7 @@ function renderResults(item) {
   `
 }
 
+
 function resultList(data) {
 
   console.log(data);
@@ -83,6 +103,9 @@ function resultList(data) {
 
   $('.js-search-results').html(trailInfo);
 
+  if ($('#map').hasClass('hidden')) {
+    $('#map').removeClass('hidden')
+  }
 }
 
 //Display detailed information on a specific trail on the search results list
