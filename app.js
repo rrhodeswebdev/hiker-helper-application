@@ -51,8 +51,8 @@ function fetchWeatherData() {
 
 function renderResultList(data) {
 
-let lat = data.results.geometry
-let lon = data.results.geometry
+let lat = data.results[0].geometry.location.lat;
+let lon = data.results[0].geometry.location.lng;
 
 console.log(lat);
 console.log(lon);
