@@ -102,10 +102,6 @@ function resultList(data) {
     renderResults(item));
 
   $('.js-search-results').html(trailInfo);
-
-  if ($('#map').hasClass('hidden')) {
-    $('#map').removeClass('hidden')
-  }
 }
 
 //Display detailed information on a specific trail on the search results list
