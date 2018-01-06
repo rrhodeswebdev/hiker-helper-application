@@ -67,7 +67,9 @@ function renderResults(item) {
   return `
     <div class="individual-trail">
       <h2>${item.name}</h2>
-      <p>${item.location}</p>
+      <p><img src="${item.imgSmall}"</p>
+      <p>Location: ${item.location}</p>
+      <p>${item.summary}</p>
     </div>
   `
 }
