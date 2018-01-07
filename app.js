@@ -61,27 +61,9 @@ function fetchTrailData(data, query, callback) {
 
 };
 
-function addMarkers(data) {
-  for (let i = 0; i <= data.trails.length; i++) {
-    var lat = data.trails[i].latitude;
-    var lon = data.trails[i].longitude;
-    var position = {
-      lat,
-      lon
-    }
-
-    console.log(position);
-  }
-
-  var marker = new google.maps.Marker({
-    position: position,
-    map: map
-  });
-};
-
 function createMap(newQuery) {
   $('#map').append(
-    function initMap(callback) {
+    function initMap() {
       var myLatLng = {
         lat: newQuery.lat,
         lng: newQuery.lon
@@ -117,8 +99,6 @@ function renderResults(item) {
 function resultList(data) {
 
   console.log(data);
-
-  addMarkers(data);
 
   let trailInfo = data.trails.map(item =>
     renderResults(item));
