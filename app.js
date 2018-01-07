@@ -13,10 +13,12 @@ function userSubmitData() {
     fetchGoogleGeoData(userValue, fetchTrailData);
 
     userValue = $('#input-field').val("");
+
+    console.log("userSubmitData executed");
   })
 }
 
-console.log("userSubmitData executed");
+
 
 //API request to Google Geocoding Data
 
@@ -46,13 +48,40 @@ function fetchTrailData(data, query, callback) {
   const newQuery = {
     key: "200202949-be5202662091a9dc38356c0c802cd058",
     lat: lat,
-    lon: lon
+    lon: lon,
+    maxResults: 25,
+    maxDistance: 20
   }
 
   console.log(newQuery);
 
+  createMap(newQuery);
+
+  $.getJSON(GETTRAIL_API, newQuery, resultList)
+
+};
+
+function addMarkers(data) {
+  for (let i = 0; i <= data.trails.length; i++) {
+    var lat = data.trails[i].latitude;
+    var lon = data.trails[i].longitude;
+    var position = {
+      lat,
+      lon
+    }
+
+    console.log(position);
+  }
+
+  var marker = new google.maps.Marker({
+    position: position,
+    map: map
+  });
+};
+
+function createMap(newQuery) {
   $('#map').append(
-    function initMap() {
+    function initMap(callback) {
       var myLatLng = {
         lat: newQuery.lat,
         lng: newQuery.lon
@@ -62,17 +91,8 @@ function fetchTrailData(data, query, callback) {
         zoom: 12,
         center: myLatLng
       });
-
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Search Input'
-      });
     });
-
-  $.getJSON(GETTRAIL_API, newQuery, resultList)
-
-}
+};
 
 //API request to Wunderground
 
@@ -98,6 +118,8 @@ function resultList(data) {
 
   console.log(data);
 
+  addMarkers(data);
+
   let trailInfo = data.trails.map(item =>
     renderResults(item));
 
@@ -108,12 +130,5 @@ function resultList(data) {
 function weatherUpdate() {
 
 }
-
-//Display detailed information on a specific trail on the search results list
-
-function renderDetailTrail() {
-
-}
-
 
 $(userSubmitData)
