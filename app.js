@@ -1,7 +1,7 @@
 //API endpoints
-
 const GEOCODE_API = "https://maps.googleapis.com/maps/api/geocode/json"
 const GETTRAIL_API = "https://www.hikingproject.com/data/get-trails"
+
 
 //Capture user input, which should be a location
 function userSubmitData() {
@@ -68,7 +68,7 @@ function fetchTrailData(data, query, callback) {
         map: map,
         title: 'Search Input'
       });
-    })
+    });
 
   $.getJSON(GETTRAIL_API, newQuery, resultList)
 
@@ -102,6 +102,11 @@ function resultList(data) {
     renderResults(item));
 
   $('.js-search-results').html(trailInfo);
+}
+
+
+function weatherUpdate() {
+
 }
 
 //Display detailed information on a specific trail on the search results list
