@@ -16,7 +16,7 @@ function userSubmitData() {
   })
 }
 
-console.log("userSubmitData executed");
+
 
 //API request to Google Geocoding Data
 
@@ -40,17 +40,30 @@ function fetchTrailData(data, query, callback) {
   let lat = data.results[0].geometry.location.lat;
   let lon = data.results[0].geometry.location.lng;
 
-  console.log(lat);
-  console.log(lon);
-
   const newQuery = {
     key: "200202949-be5202662091a9dc38356c0c802cd058",
     lat: lat,
-    lon: lon
+    lon: lon,
+    maxResults: 25,
+    maxDistance: 20
   }
 
-  console.log(newQuery);
+  createMap(newQuery);
 
+  $.getJSON(GETTRAIL_API, newQuery, resultList)
+
+};
+
+
+//API request to Wunderground
+
+function fetchWeatherData() {
+
+}
+
+//Display a map and list of trails around the location value
+
+function createMap(newQuery) {
   $('#map').append(
     function initMap() {
       var myLatLng = {
@@ -62,25 +75,8 @@ function fetchTrailData(data, query, callback) {
         zoom: 12,
         center: myLatLng
       });
-
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        title: 'Search Input'
-      });
     });
-
-  $.getJSON(GETTRAIL_API, newQuery, resultList)
-
-}
-
-//API request to Wunderground
-
-function fetchWeatherData() {
-
-}
-
-//Display a map and list of trails around the location value
+};
 
 function renderResults(item) {
   return `
@@ -88,11 +84,11 @@ function renderResults(item) {
       <h2>${item.name}</h2>
       <p><img src="${item.imgSmall}"</p>
       <p>Location: ${item.location}</p>
+      <p>Hiker Rating: ${item.stars}</p>
       <p>${item.summary}</p>
     </div>
   `
 }
-
 
 function resultList(data) {
 
@@ -108,12 +104,5 @@ function resultList(data) {
 function weatherUpdate() {
 
 }
-
-//Display detailed information on a specific trail on the search results list
-
-function renderDetailTrail() {
-
-}
-
 
 $(userSubmitData)
