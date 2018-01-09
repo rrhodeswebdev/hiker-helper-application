@@ -10,17 +10,15 @@ function userSubmitData() {
 
     let userValue = $('#input-field').val();
 
-    fetchGoogleGeoData(userValue, fetchTrailData);
+    fetchAllData(userValue);
 
     userValue = $('#input-field').val("");
   })
 }
 
-
-
 //API request to Google Geocoding Data
 
-function fetchGoogleGeoData(userValue, callback) {
+function fetchAllData(userValue) {
 
   const query = {
     address: `${userValue}`,
@@ -29,29 +27,37 @@ function fetchGoogleGeoData(userValue, callback) {
 
   console.log(query);
 
-  $.getJSON(GEOCODE_API, query, callback);
+  $.getJSON(GEOCODE_API, query, function(data) {
 
-}
+    let lat = data.results[0].geometry.location.lat;
+    let lon = data.results[0].geometry.location.lng;
 
-//API request to REI Hiking Project
+    console.log(lat);
+    console.log(lon);
 
-function fetchTrailData(data, query, callback) {
+    const newQuery = {
+      key: "200202949-be5202662091a9dc38356c0c802cd058",
+      lat: lat,
+      lon: lon,
+      maxResults: 15,
+      maxDistance: 10
+    }
 
-  let lat = data.results[0].geometry.location.lat;
-  let lon = data.results[0].geometry.location.lng;
+    $.getJSON(GETTRAIL_API, newQuery, function(data) {
 
-  const newQuery = {
-    key: "200202949-be5202662091a9dc38356c0c802cd058",
-    lat: lat,
-    lon: lon,
-    maxResults: 25,
-    maxDistance: 20
-  }
+      console.log(data);
 
-  createMap(newQuery);
+      let trailInfo = data.trails.map(item =>
+        renderResults(item));
 
-  $.getJSON(GETTRAIL_API, newQuery, resultList)
+      $('.js-search-results').html(trailInfo);
 
+      createMap({
+        lat: lat,
+        lon: lon
+      }, data.trails);
+    })
+  });
 };
 
 
@@ -63,17 +69,28 @@ function fetchWeatherData() {
 
 //Display a map and list of trails around the location value
 
-function createMap(newQuery) {
+function createMap(coords, trails) {
   $('#map').append(
     function initMap() {
       var myLatLng = {
-        lat: newQuery.lat,
-        lng: newQuery.lon
+        lat: coords.lat,
+        lng: coords.lon
       };
 
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
+        zoom: 11,
         center: myLatLng
+      });
+
+      trails.forEach(trail => {
+        new google.maps.Marker({
+          position: {
+            lat: trail.latitude,
+            lng: trail.longitude
+          },
+          map: map,
+          title: trail.name
+        });
       });
     });
 };
@@ -92,12 +109,6 @@ function renderResults(item) {
 
 function resultList(data) {
 
-  console.log(data);
-
-  let trailInfo = data.trails.map(item =>
-    renderResults(item));
-
-  $('.js-search-results').html(trailInfo);
 }
 
 
