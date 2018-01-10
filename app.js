@@ -126,15 +126,14 @@ function renderResults(item) {
 
 function renderWeatherResults(item) {
   return `
-  <div class="forecast-upcoming">
     <div class="daily-forecast">
-    <i>${item.weather.icon}</i>
+      <img width="100px" height="100px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png"></img>
       <h3>${item.datetime}</h3>
-      <p>High Temp: ${item.max_temp}</p>
-      <p>Low Temp: ${item.min_temp}</p>
+      <p>High: ${item.max_temp.toFixed()} F</p>
+      <p>Low: ${item.min_temp.toFixed()} F</p>
       <p>${item.weather.description}</p>
+      <p>Chance of Precipitation: ${item.pop}%</p>
     </div>
-  </div>
   `
 }
 
