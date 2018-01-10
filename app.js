@@ -1,6 +1,7 @@
 //API endpoints
 const GEOCODE_API = "https://maps.googleapis.com/maps/api/geocode/json"
 const GETTRAIL_API = "https://www.hikingproject.com/data/get-trails"
+const GETWEATHER_API = "https://api.weatherbit.io/v2.0/forecast/daily"
 
 
 //Capture user input, which should be a location
@@ -16,7 +17,7 @@ function userSubmitData() {
   })
 }
 
-//API request to Google Geocoding Data
+//API requests
 
 function fetchAllData(userValue) {
 
@@ -57,15 +58,31 @@ function fetchAllData(userValue) {
         lon: lon
       }, data.trails);
     })
+
+    const query = {
+      key: "561f14cf5f16425a98fb0f2ce6cfe344",
+      units: "I",
+      days: 5,
+      lat: lat,
+      lon: lon
+    }
+
+    console.log(query);
+
+    $.getJSON(GETWEATHER_API, query, function(data) {
+
+      console.log(data);
+
+      let weatherInfo = data.data.map(item =>
+      renderWeatherResults(item));
+
+      console.log(weatherInfo)
+
+      $('.js-weather-forecast').html(weatherInfo);
+
   });
+});
 };
-
-
-//API request to Wunderground
-
-function fetchWeatherData() {
-
-}
 
 //Display a map and list of trails around the location value
 
@@ -82,7 +99,7 @@ function createMap(coords, trails) {
         center: myLatLng
       });
 
-      trails.forEach(trail => {
+      var marker = trails.forEach(trail => {
         new google.maps.Marker({
           position: {
             lat: trail.latitude,
@@ -107,13 +124,17 @@ function renderResults(item) {
   `
 }
 
-function resultList(data) {
-
-}
-
-
-function weatherUpdate() {
-
+function renderWeatherResults(item) {
+  return `
+    <div class="daily-forecast">
+      <img width="100px" height="100px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png"></img>
+      <h3>${item.datetime}</h3>
+      <p>High: ${item.max_temp.toFixed()} F</p>
+      <p>Low: ${item.min_temp.toFixed()} F</p>
+      <p>${item.weather.description}</p>
+      <p>Chance of Precipitation: ${item.pop}%</p>
+    </div>
+  `
 }
 
 $(userSubmitData)
