@@ -26,15 +26,10 @@ function fetchAllData(userValue) {
     key: "AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4"
   }
 
-  console.log(query);
-
   $.getJSON(GEOCODE_API, query, function(data) {
 
     let lat = data.results[0].geometry.location.lat;
     let lon = data.results[0].geometry.location.lng;
-
-    console.log(lat);
-    console.log(lon);
 
     const newQuery = {
       key: "200202949-be5202662091a9dc38356c0c802cd058",
@@ -74,14 +69,14 @@ function fetchAllData(userValue) {
       console.log(data);
 
       let weatherInfo = data.data.map(item =>
-      renderWeatherResults(item));
+        renderWeatherResults(item));
 
       console.log(weatherInfo)
 
       $('.js-weather-forecast').html(weatherInfo);
 
+    });
   });
-});
 };
 
 //Display a map and list of trails around the location value
@@ -95,8 +90,16 @@ function createMap(coords, trails) {
       };
 
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11,
+        zoom: 10,
         center: myLatLng
+      });
+
+      var contentString = trails.forEach(trail => {
+        `${trail.name}`
+      })
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
       });
 
       var marker = trails.forEach(trail => {
@@ -108,6 +111,11 @@ function createMap(coords, trails) {
           map: map,
           title: trail.name
         });
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+        console.log("clicked marker");
       });
     });
 };
