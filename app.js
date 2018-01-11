@@ -70,6 +70,10 @@ function fetchAllData(userValue) {
             lon: lon
           }, data.trails);
         };
+      }).fail(function(err){
+        console.log("Handle Trail API Error", err);
+        $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
+        return;
       })
 
       const query = {
@@ -94,10 +98,18 @@ function fetchAllData(userValue) {
 
         $('.js-weather-forecast').html(weatherInfo);
 
+      }).fail(function(err){
+        console.log("Handle Weather API Error", err)
+        $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
+        return;
       });
     }
   }).fail(function(err) {
-    console.log(err)
+
+    console.log("Handle Geocode API Error:", err)
+
+    $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
+    return;
   })
 };
 
@@ -126,14 +138,9 @@ function createMap(coords, trails) {
           title: trail.name
         })
 
-        if (trail.imgSmall === "") {
-          trail.imgSmall = "https://www.reaganfoundation.org/umbraco/ucommerce/images/ui/image_not_found.jpg"
-        }
-
         var trailMarkerContent = `
           <div class="trail-marker">
             <h3>${trail.name}</h3>
-            <img src=${trail.imgSmall}></img>
             <p class="marker-p">${trail.location}</p>
             <pclass="marker-p">Rating: ${trail.stars} out of 5</p>
           </div>
