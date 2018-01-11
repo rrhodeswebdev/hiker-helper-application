@@ -50,6 +50,15 @@ function fetchAllData(userValue) {
 
         console.log(data);
 
+        if(data.trails.length === 0){
+          createMap({
+            lat: lat,
+            lon: lon
+          }, data.trails);
+          $('.js-search-results').html(`<p>No trails found near that location<p>`)
+          $('.js-weather-forecast').addClass('hidden')
+        } else {
+
         let trailInfo = data.trails.map(item =>
           renderResults(item));
 
@@ -59,7 +68,8 @@ function fetchAllData(userValue) {
           lat: lat,
           lon: lon
         }, data.trails);
-      })
+      };
+    })
 
       const query = {
         key: "561f14cf5f16425a98fb0f2ce6cfe344",
