@@ -94,28 +94,21 @@ function createMap(coords, trails) {
         center: myLatLng
       });
 
-      var contentString = trails.forEach(trail => {
-        `${trail.name}`
-      })
-
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-
-      var marker = trails.forEach(trail => {
-        new google.maps.Marker({
+      trails.forEach(trail => {
+        var marker = new google.maps.Marker({
           position: {
             lat: trail.latitude,
             lng: trail.longitude
           },
           map: map,
           title: trail.name
+        })
+        var infowindow = new google.maps.InfoWindow({
+          content: trail.name
         });
-      });
-
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-        console.log("clicked marker");
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
       });
     });
 };
