@@ -28,103 +28,141 @@ function fetchAllData(userValue) {
 
   $.getJSON(GEOCODE_API, query, function(data) {
 
-    let lat = data.results[0].geometry.location.lat;
-    let lon = data.results[0].geometry.location.lng;
+    if (data.status === "ZERO_RESULTS") {
+      $('.js-error-handle').html('That location must be lost...try again').removeClass('hidden')
+      return;
+    } else {
 
-    const newQuery = {
-      key: "200202949-be5202662091a9dc38356c0c802cd058",
-      lat: lat,
-      lon: lon,
-      maxResults: 15,
-      maxDistance: 10
-    }
+      $('.js-error-handle').addClass('hidden')
 
-    $.getJSON(GETTRAIL_API, newQuery, function(data) {
+      let lat = data.results[0].geometry.location.lat;
+      let lon = data.results[0].geometry.location.lng;
 
-      console.log(data);
+      const newQuery = {
+        key: "200202949-be5202662091a9dc38356c0c802cd058",
+        lat: lat,
+        lon: lon,
+        maxResults: 15,
+        maxDistance: 10
+      }
 
-      let trailInfo = data.trails.map(item =>
-        renderResults(item));
+      $.getJSON(GETTRAIL_API, newQuery, function(data) {
 
-      $('.js-search-results').html(trailInfo);
+        console.log(data);
 
-      createMap({
+        if (data.trails.length === 0) {
+          createMap({
+            lat: lat,
+            lon: lon
+          }, data.trails);
+          $('.js-search-results').html(`<p>No trails found near that location<p>`)
+          $('.js-weather-forecast').addClass('hidden')
+        } else {
+
+          let trailInfo = data.trails.map(item =>
+
+            renderResults(item));
+
+          $('.js-search-results').html(trailInfo);
+
+          createMap({
+            lat: lat,
+            lon: lon
+          }, data.trails);
+        };
+      }).fail(function(err){
+        console.log("Handle Trail API Error", err);
+        $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
+        return;
+      })
+
+      const query = {
+        key: "561f14cf5f16425a98fb0f2ce6cfe344",
+        units: "I",
+        days: 5,
         lat: lat,
         lon: lon
-      }, data.trails);
-    })
+      }
 
-    const query = {
-      key: "561f14cf5f16425a98fb0f2ce6cfe344",
-      units: "I",
-      days: 5,
-      lat: lat,
-      lon: lon
+      console.log(query);
+
+      $.getJSON(GETWEATHER_API, query, function(data) {
+
+        console.log(data);
+
+        let weatherInfo = data.data.map(item =>
+
+          renderWeatherResults(item));
+
+        console.log(weatherInfo)
+
+        $('.js-weather-forecast').html(weatherInfo);
+
+      }).fail(function(err){
+        console.log("Handle Weather API Error", err)
+        $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
+        return;
+      });
     }
+  }).fail(function(err) {
 
-    console.log(query);
+    console.log("Handle Geocode API Error:", err)
 
-    $.getJSON(GETWEATHER_API, query, function(data) {
-
-      console.log(data);
-
-      let weatherInfo = data.data.map(item =>
-        renderWeatherResults(item));
-
-      console.log(weatherInfo)
-
-      $('.js-weather-forecast').html(weatherInfo);
-
-    });
-  });
+    $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
+    return;
+  })
 };
 
 //Display a map and list of trails around the location value
 
 function createMap(coords, trails) {
   $('#map').append(
-      function initMap() {
-        var myLatLng = {
-          lat: coords.lat,
-          lng: coords.lon
-        };
+    function initMap() {
+      var myLatLng = {
+        lat: coords.lat,
+        lng: coords.lon
+      };
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: myLatLng
-        });
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: myLatLng
+      });
 
-        trails.forEach(trail => {
-          var marker = new google.maps.Marker({
-            position: {
-              lat: trail.latitude,
-              lng: trail.longitude
-            },
-            map: map,
-            title: trail.name
-          })
+      trails.forEach(trail => {
+        var marker = new google.maps.Marker({
+          position: {
+            lat: trail.latitude,
+            lng: trail.longitude
+          },
+          map: map,
+          title: trail.name
+        })
 
-          var trailMarkerContent = `
+        var trailMarkerContent = `
           <div class="trail-marker">
             <h3>${trail.name}</h3>
-            <img src=${trail.imgSmall}></img>
             <p class="marker-p">${trail.location}</p>
             <pclass="marker-p">Rating: ${trail.stars} out of 5</p>
           </div>
         `
 
-          var infowindow = new google.maps.InfoWindow({
-            content: trailMarkerContent
-          });
-          marker.addListener('click', function() {
-            infowindow.open(map, marker);
-            });
-          });
+        var infowindow = new google.maps.InfoWindow({
+          content: trailMarkerContent
         });
-      };
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      });
+    });
+};
 
-      function renderResults(item) {
-        return `
+function renderResults(item) {
+
+  if (item.imgSmallMed === "") {
+    item.imgSmallMed = "https://www.reaganfoundation.org/umbraco/ucommerce/images/ui/image_not_found.jpg"
+  }
+
+  return `
     <div class="individual-trail">
       <h2>${item.name}</h2>
       <p><img src="${item.imgSmallMed}"</p>
@@ -133,10 +171,10 @@ function createMap(coords, trails) {
       <p>${item.summary}</p>
     </div>
   `
-      }
+};
 
-      function renderWeatherResults(item) {
-        return `
+function renderWeatherResults(item) {
+  return `
     <div class="daily-forecast">
       <img width="100px" height="100px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png"></img>
       <h3>${item.datetime}</h3>
@@ -146,6 +184,6 @@ function createMap(coords, trails) {
       <p>Chance of Precipitation: ${item.pop}%</p>
     </div>
   `
-      }
+}
 
-      $(userSubmitData)
+$(userSubmitData)
