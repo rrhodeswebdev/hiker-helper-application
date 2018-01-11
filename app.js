@@ -26,15 +26,10 @@ function fetchAllData(userValue) {
     key: "AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4"
   }
 
-  console.log(query);
-
   $.getJSON(GEOCODE_API, query, function(data) {
 
     let lat = data.results[0].geometry.location.lat;
     let lon = data.results[0].geometry.location.lng;
-
-    console.log(lat);
-    console.log(lon);
 
     const newQuery = {
       key: "200202949-be5202662091a9dc38356c0c802cd058",
@@ -74,58 +69,74 @@ function fetchAllData(userValue) {
       console.log(data);
 
       let weatherInfo = data.data.map(item =>
-      renderWeatherResults(item));
+        renderWeatherResults(item));
 
       console.log(weatherInfo)
 
       $('.js-weather-forecast').html(weatherInfo);
 
+    });
   });
-});
 };
 
 //Display a map and list of trails around the location value
 
 function createMap(coords, trails) {
   $('#map').append(
-    function initMap() {
-      var myLatLng = {
-        lat: coords.lat,
-        lng: coords.lon
+      function initMap() {
+        var myLatLng = {
+          lat: coords.lat,
+          lng: coords.lon
+        };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: myLatLng
+        });
+
+        trails.forEach(trail => {
+          var marker = new google.maps.Marker({
+            position: {
+              lat: trail.latitude,
+              lng: trail.longitude
+            },
+            map: map,
+            title: trail.name
+          })
+
+          var trailMarkerContent = `
+          <div class="trail-marker">
+            <h3>${trail.name}</h3>
+            <img src=${trail.imgSmall}></img>
+            <p class="marker-p">${trail.location}</p>
+            <pclass="marker-p">Rating: ${trail.stars} out of 5</p>
+          </div>
+        `
+
+          var infowindow = new google.maps.InfoWindow({
+            content: trailMarkerContent
+          });
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+            });
+          });
+        });
       };
 
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11,
-        center: myLatLng
-      });
-
-      var marker = trails.forEach(trail => {
-        new google.maps.Marker({
-          position: {
-            lat: trail.latitude,
-            lng: trail.longitude
-          },
-          map: map,
-          title: trail.name
-        });
-      });
-    });
-};
-
-function renderResults(item) {
-  return `
+      function renderResults(item) {
+        return `
     <div class="individual-trail">
       <h2>${item.name}</h2>
-      <p><img src="${item.imgSmall}"</p>
+      <p><img src="${item.imgSmallMed}"</p>
       <p>Location: ${item.location}</p>
       <p>Hiker Rating: ${item.stars}</p>
       <p>${item.summary}</p>
     </div>
   `
-}
+      }
 
-function renderWeatherResults(item) {
-  return `
+      function renderWeatherResults(item) {
+        return `
     <div class="daily-forecast">
       <img width="100px" height="100px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png"></img>
       <h3>${item.datetime}</h3>
@@ -135,6 +146,6 @@ function renderWeatherResults(item) {
       <p>Chance of Precipitation: ${item.pop}%</p>
     </div>
   `
-}
+      }
 
-$(userSubmitData)
+      $(userSubmitData)
