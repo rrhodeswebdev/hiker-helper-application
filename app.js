@@ -50,7 +50,7 @@ function fetchAllData(userValue) {
 
         console.log(data);
 
-        if(data.trails.length === 0){
+        if (data.trails.length === 0) {
           createMap({
             lat: lat,
             lon: lon
@@ -59,17 +59,18 @@ function fetchAllData(userValue) {
           $('.js-weather-forecast').addClass('hidden')
         } else {
 
-        let trailInfo = data.trails.map(item =>
-          renderResults(item));
+          let trailInfo = data.trails.map(item =>
 
-        $('.js-search-results').html(trailInfo);
+            renderResults(item));
 
-        createMap({
-          lat: lat,
-          lon: lon
-        }, data.trails);
-      };
-    })
+          $('.js-search-results').html(trailInfo);
+
+          createMap({
+            lat: lat,
+            lon: lon
+          }, data.trails);
+        };
+      })
 
       const query = {
         key: "561f14cf5f16425a98fb0f2ce6cfe344",
@@ -86,6 +87,7 @@ function fetchAllData(userValue) {
         console.log(data);
 
         let weatherInfo = data.data.map(item =>
+
           renderWeatherResults(item));
 
         console.log(weatherInfo)
@@ -95,7 +97,7 @@ function fetchAllData(userValue) {
       });
     }
   }).fail(function(err) {
-
+    console.log(err)
   })
 };
 
@@ -124,6 +126,10 @@ function createMap(coords, trails) {
           title: trail.name
         })
 
+        if (trail.imgSmall === "") {
+          trail.imgSmall = "https://www.reaganfoundation.org/umbraco/ucommerce/images/ui/image_not_found.jpg"
+        }
+
         var trailMarkerContent = `
           <div class="trail-marker">
             <h3>${trail.name}</h3>
@@ -144,6 +150,11 @@ function createMap(coords, trails) {
 };
 
 function renderResults(item) {
+
+  if (item.imgSmallMed === "") {
+    item.imgSmallMed = "https://www.reaganfoundation.org/umbraco/ucommerce/images/ui/image_not_found.jpg"
+  }
+
   return `
     <div class="individual-trail">
       <h2>${item.name}</h2>
@@ -153,7 +164,7 @@ function renderResults(item) {
       <p>${item.summary}</p>
     </div>
   `
-}
+};
 
 function renderWeatherResults(item) {
   return `
