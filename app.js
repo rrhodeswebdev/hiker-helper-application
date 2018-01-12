@@ -165,10 +165,16 @@ function renderResults(item) {
   return `
     <div class="individual-trail">
       <h2>${item.name}</h2>
+      <p>${item.location}</p>
       <p><img src="${item.imgSmallMed}"</p>
-      <p>Location: ${item.location}</p>
-      <p>Hiker Rating: ${item.stars}</p>
       <p>${item.summary}</p>
+      <p>Distance: ${item.length} miles</p>
+      <p>High: ${item.high}'</p>
+      <p>Low: ${item.low}'</p>
+      <p>Ascent: ${item.ascent}'</p>
+      <p>Descent: ${item.descent}'</p>
+      <p>Difficulty: ${item.difficulty}</p>
+      <p>Rating: ${item.stars}</p>
     </div>
   `
 };
