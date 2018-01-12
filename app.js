@@ -174,7 +174,7 @@ function renderResults(item) {
       <p>Ascent: ${item.ascent}'</p>
       <p>Descent: ${item.descent}'</p>
       <p>Difficulty: ${item.difficulty}</p>
-      <p>Rating: ${item.stars}</p>
+      <p>Rating: ${item.stars} out of 5</p>
       <p><a href="${item.url}" target="_blank">See more details</a></p>
     </div>
   `
