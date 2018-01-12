@@ -42,7 +42,7 @@ function fetchAllData(userValue) {
         key: "200202949-be5202662091a9dc38356c0c802cd058",
         lat: lat,
         lon: lon,
-        maxResults: 50,
+        maxResults: 500,
         maxDistance: 10
       }
 
