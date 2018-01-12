@@ -5,30 +5,34 @@
   <meta charset="utf-8" content="">
   <title>Hiker Helper</title>
   <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 
 <body>
 
-  <header role="banner">
-    <h1>Hiker Helper</h1>
-    <p>Find your weekend hiking trail</p>
+  <header class="start-section" role="banner">
+    <div class="initial-view">
+      <div class="start-text">
+        <h1>Hiker Helper</h1>
+        <h2>Find your weekend hiking trail</h2>
+        <p>Start by typing in a city below...</p>
+      </div>
+      <div class="js-search-form-section search-section">
+        <form class="js-search-form search-form" action="index.html">
+          <label for="searchForm">
+          <input type="text" placeholder="Find trails near..." id="input-field">
+        </label>
+          <br>
+          <button type="submit" name="button" class="js-submit-btn">Find Trails</button>
+        </form>
+      </div>
+    </div>
   </header>
 
   <main role="main">
 
     <section>
-      <div class="js-search-form-section">
-        <form class="js-search-form" action="index.html">
-          <label for="searchForm">
-          <input type="text" placeholder="Location" id="input-field">
-        </label>
-          <button type="submit" name="button" class="js-submit-btn">Find Trails</button>
-        </form>
-      </div>
-    </section>
-
-    <section>
-      <div class="js-error-handle hidden">
+      <div class="js-error-handle hidden error-handle">
 
       </div>
     </section>
