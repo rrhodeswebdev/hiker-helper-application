@@ -140,7 +140,7 @@ function createMap(coords, trails) {
 
         var trailMarkerContent = `
           <div class="trail-marker">
-            <h3>${trail.name}</h3>
+            <a href="#${trail.id}"><h3>${trail.name}</h3></a>
             <p class="marker-p">${trail.location}</p>
             <pclass="marker-p">Rating: ${trail.stars} out of 5</p>
           </div>
@@ -163,18 +163,18 @@ function renderResults(item) {
   }
 
   return `
-    <div class="individual-trail">
+    <div class="individual-trail" id="${item.id}">
       <h2>${item.name}</h2>
       <p>${item.location}</p>
       <p><img src="${item.imgSmallMed}"</p>
       <p>${item.summary}</p>
       <p>Distance: ${item.length} miles</p>
-      <p>High: ${item.high}'</p>
-      <p>Low: ${item.low}'</p>
+      <p>High: ${item.low}'</p>
+      <p>Low: ${item.high}'</p>
       <p>Ascent: ${item.ascent}'</p>
       <p>Descent: ${item.descent}'</p>
-      <p>Difficulty: ${item.difficulty}</p>
-      <p>Rating: ${item.stars}</p>
+      <p>Rating: ${item.stars} out of 5</p>
+      <p><a href="${item.url}" target="_blank">See more details</a></p>
     </div>
   `
 };
