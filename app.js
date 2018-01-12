@@ -108,7 +108,7 @@ function fetchAllData(userValue) {
 
     console.log("Handle Geocode API Error:", err)
 
-    $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
+    $('.js-error-handle').html(`<p>Try that location again</p>`).removeClass('hidden')
     return;
   })
 };
