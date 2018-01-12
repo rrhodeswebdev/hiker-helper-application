@@ -169,8 +169,8 @@ function renderResults(item) {
       <p><img src="${item.imgSmallMed}"</p>
       <p>${item.summary}</p>
       <p>Distance: ${item.length} miles</p>
-      <p>High: ${item.high}'</p>
-      <p>Low: ${item.low}'</p>
+      <p>High: ${item.low}'</p>
+      <p>Low: ${item.high}'</p>
       <p>Ascent: ${item.ascent}'</p>
       <p>Descent: ${item.descent}'</p>
       <p>Rating: ${item.stars} out of 5</p>
