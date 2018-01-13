@@ -6,11 +6,14 @@ const GETWEATHER_API = "https://api.weatherbit.io/v2.0/forecast/daily"
 
 //Capture user input, which should be a location
 function userSubmitData() {
-  $('.js-search-form').on('click', '.js-submit-btn', function(event) {
+  $('.js-submit-btn').click(function(event) {
     event.preventDefault();
     $('#map').removeClass('hidden')
+    $('section').removeClass('hidden')
 
     let userValue = $('#input-field').val();
+
+
 
     fetchAllData(userValue);
 
@@ -21,6 +24,8 @@ function userSubmitData() {
 //API requests
 
 function fetchAllData(userValue) {
+
+  $('.search-message').html(`<p class="trails-near-text">Trails near ${userValue}</p>`).removeClass('hidden')
 
   const query = {
     address: `${userValue}`,
@@ -33,8 +38,6 @@ function fetchAllData(userValue) {
       $('.js-error-handle').html('That location must be lost...try again').removeClass('hidden')
       return;
     } else {
-
-      $('.js-error-handle').addClass('hidden')
 
       let lat = data.results[0].geometry.location.lat;
       let lon = data.results[0].geometry.location.lng;
@@ -56,7 +59,7 @@ function fetchAllData(userValue) {
             lat: lat,
             lon: lon
           }, data.trails);
-          $('.js-search-results').html(`<p>No trails found near that location<p>`)
+          $('.js-search-results').html(`<p class="no-trails-text">No trails found near that location<p>`)
           $('.js-weather-forecast').addClass('hidden')
         } else {
 
@@ -165,17 +168,15 @@ function renderResults(item) {
 
   return `
     <div class="individual-trail" id="${item.id}">
-      <h2>${item.name}</h2>
-      <p>${item.location}</p>
-      <p><img src="${item.imgSmallMed}"</p>
-      <p>${item.summary}</p>
-      <p>Distance: ${item.length} miles</p>
-      <p>High: ${item.low}'</p>
-      <p>Low: ${item.high}'</p>
-      <p>Ascent: ${item.ascent}'</p>
-      <p>Descent: ${item.descent}'</p>
-      <p>Rating: ${item.stars} out of 5</p>
-      <p><a href="${item.url}" target="_blank">See more details</a></p>
+      <h2 class="trail-text-info">${item.name}</h2>
+      <p class="trail-text-info">${item.location}</p>
+      <p><img src="${item.imgSmallMed}"></p>
+      <p class="trail-text-info">${item.summary}</p>
+      <p class="trail-text-info">Distance: <b>${item.length} miles</b></p>
+      <p class="trail-text-info">High: <b>${item.low}'</b> Low: <b>${item.high}'</b></p>
+      <p class="trail-text-info">Ascent: <b>${item.ascent}'</b> Descent: <b>${item.descent}'</b></p>
+      <p class="trail-text-info">Rating: ${item.stars} out of 5</p>
+      <p class="trail-text-info"><a href="${item.url}" target="_blank">See more details</a></p>
     </div>
   `
 };
@@ -183,12 +184,11 @@ function renderResults(item) {
 function renderWeatherResults(item) {
   return `
     <div class="daily-forecast">
-      <img width="100px" height="100px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png"></img>
+      <img width="75px" height="75px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png"></img>
       <h3 class="weather-text">${item.datetime}</h3>
-      <p class="weather-text">High: ${item.max_temp.toFixed()} F</p>
-      <p class="weather-text">Low: ${item.min_temp.toFixed()} F</p>
+      <p class="weather-text">High: ${item.max_temp.toFixed()} F Low: ${item.min_temp.toFixed()} F</p>
       <p class="weather-text">${item.weather.description}</p>
-      <p class="weather-text">Chance of Precipitation: ${item.pop}%</p>
+      <p class="weather-text">Chance of Precip: ${item.pop}%</p>
     </div>
   `
 }
