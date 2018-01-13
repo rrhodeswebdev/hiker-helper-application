@@ -8,7 +8,6 @@ const GETWEATHER_API = "https://api.weatherbit.io/v2.0/forecast/daily"
 function userSubmitData() {
   $('.js-submit-btn').click(function(event) {
     event.preventDefault();
-    $('#map').removeClass('hidden')
     $('section').removeClass('hidden')
 
     let userValue = $('#input-field').val();
@@ -55,7 +54,7 @@ function fetchAllData(userValue) {
             lat: lat,
             lon: lon
           }, data.trails);
-          $('.js-search-results').html(`<p class="no-trails-text">No trails found near that location<p>`)
+          $('.js-search-results').html(`<p class="no-trails-text">No trails found near that location<p><br/><button class="search-again-btn"><a href="#search-banner">Try Another Location</a></button>`)
           $('.js-weather-forecast').addClass('hidden')
         } else {
 
@@ -160,7 +159,10 @@ function renderResults(item) {
       "https://images.unsplash.com/photo-1504193902866-27cfb5aafcc8?auto=format&fit=crop&w=1050&q=80",
       "https://images.unsplash.com/photo-1445307806294-bff7f67ff225?auto=format&fit=crop&w=1053&q=80",
       "https://images.unsplash.com/photo-1445207966278-0a0a65a2047b?auto=format&fit=crop&w=1500&q=80",
-      "https://images.unsplash.com/photo-1445020902115-024a045d4552?auto=format&fit=crop&w=967&q=80"
+      "https://images.unsplash.com/photo-1445020902115-024a045d4552?auto=format&fit=crop&w=967&q=80",
+      "https://images.unsplash.com/photo-1455741221562-726825b9cb2b?auto=format&fit=crop&w=1010&q=80",
+      "https://images.unsplash.com/photo-1446210050316-7c556e3aade0?auto=format&fit=crop&w=967&q=80",
+      "https://images.unsplash.com/photo-1420802498636-9d647b43d2eb?auto=format&fit=crop&w=1050&q=80"
     ]
     let newImgSrc = defImg[Math.floor(Math.random()*defImg.length)]
     item.imgSmallMed = newImgSrc
