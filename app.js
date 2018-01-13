@@ -11,7 +11,7 @@ function userSubmitData() {
     $('section').removeClass('hidden')
     $('html, body').animate({
     'scrollTop' : $("#first-section").position().top
-}, 1000);
+}, 1500);
     let userValue = $('#input-field').val();
     fetchAllData(userValue);
     userValue = $('#input-field').val("");
