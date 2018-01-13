@@ -71,9 +71,9 @@ button {
 }
 
 #map {
-  width: 720px;
-  height: 405px;
-  margin-top: 20px;
+  width: 750px;
+  height: 422px;
+  margin: 30px auto;
 }
 
 .hidden {
@@ -85,4 +85,27 @@ button {
   font-size: 18px;
   margin-top: 20px;
   font-weight: 700;
+}
+
+.error-handle {
+  font-size: 28px;
+  font-weight: 300;
+  padding: 20px;
+}
+
+.daily-forecast {
+  width: 20%;
+  float: left;
+  display: inline-block;
+  text-align: center;
+  margin: 30px 0 50px 0;
+}
+
+.weather-text {
+  padding: 3px;
+}
+
+.individual-trail {
+  float: left;
+  display: inline-block;
 }
