@@ -9,6 +9,7 @@ function userSubmitData() {
   $('.js-submit-btn').click(function(event) {
     event.preventDefault();
     $('#map').removeClass('hidden')
+    $('section').removeClass('hidden')
 
     let userValue = $('#input-field').val();
 
@@ -171,7 +172,7 @@ function renderResults(item) {
       <p class="trail-text-info">${item.location}</p>
       <p><img src="${item.imgSmallMed}"></p>
       <p class="trail-text-info">${item.summary}</p>
-      <p class="trail-text-info">Distance: ${item.length} miles</p>
+      <p class="trail-text-info">Distance: <b>${item.length} miles</b></p>
       <p class="trail-text-info">High: <b>${item.low}'</b> Low: <b>${item.high}'</b></p>
       <p class="trail-text-info">Ascent: <b>${item.ascent}'</b> Descent: <b>${item.descent}'</b></p>
       <p class="trail-text-info">Rating: ${item.stars} out of 5</p>
