@@ -73,7 +73,7 @@ button {
 #map {
   width: 750px;
   height: 422px;
-  margin: 30px auto;
+  margin: 20px auto;
 }
 
 .hidden {
@@ -82,15 +82,9 @@ button {
 
 .error-handle {
   text-align: center;
-  font-size: 18px;
-  margin-top: 20px;
-  font-weight: 700;
-}
-
-.error-handle {
   font-size: 28px;
   font-weight: 300;
-  padding: 20px;
+  margin: 50px 50px 30px 50px;
 }
 
 .daily-forecast {
@@ -98,7 +92,7 @@ button {
   float: left;
   display: inline-block;
   text-align: center;
-  margin: 30px 0 50px 0;
+  margin: 10px 0 50px 0;
 }
 
 .weather-text {
@@ -108,4 +102,30 @@ button {
 .individual-trail {
   float: left;
   display: inline-block;
+  width: 30%;
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+  border: 1px solid #95a5a6;
+  background-color: #ecf0f1;
+}
+
+.no-trails-text {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 300;
+  margin: 50px;
+}
+
+.trails-near-text {
+  text-transform: capitalize;
+}
+
+.trail-text-info {
+  padding: 5px;
+}
+
+.individual-trail p img {
+  max-width: 100%;
+  margin: 0 auto;
 }
