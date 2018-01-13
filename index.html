@@ -10,7 +10,7 @@
 
 <body>
 
-  <header class="start-section" role="banner">
+  <header class="start-section" role="banner" id="search-banner">
     <div class="initial-view">
       <div class="start-text">
         <h1>Hiker Helper</h1>
@@ -31,27 +31,38 @@
 
   <main role="main">
 
-    <section>
-      <div class="js-error-handle hidden error-handle search-message" id="first-section">
-
+    <section class="hidden">
+      <div class="js-error-handle error-handle" id="first-section">
       </div>
     </section>
 
-    <section>
-      <div id="map" class="hidden">
-
-      </div>
-    </section>
-
-    <section>
-      <div class="js-weather-forecast weather-forecast">
-
+    <section class="hidden">
+      <div class="middle-section">
+        <div class="map-area">
+          <div class="search-message">
+          </div>
+          <div id="map">
+          </div>
+        </div>
+        <div class="weather-area">
+          <div class="weather-message">
+            <h2>5 Day Forecast</h2>
+          </div>
+          <div class="js-weather-forecast weather-forecast">
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="hidden">
       <div class="js-search-results search-results">
         <h2 class="search-list-title">Trail List</h2>
+      </div>
+    </section>
+
+    <section class="hidden">
+      <div class="search-again">
+        <button class="search-again-btn"><a href="#search-banner">Search Again</a></button>
       </div>
     </section>
 
