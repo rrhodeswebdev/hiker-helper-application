@@ -13,8 +13,6 @@ function userSubmitData() {
 
     let userValue = $('#input-field').val();
 
-
-
     fetchAllData(userValue);
 
     userValue = $('#input-field').val("");
@@ -52,8 +50,6 @@ function fetchAllData(userValue) {
 
       $.getJSON(GETTRAIL_API, newQuery, function(data) {
 
-        console.log(data);
-
         if (data.trails.length === 0) {
           createMap({
             lat: lat,
@@ -88,17 +84,11 @@ function fetchAllData(userValue) {
         lon: lon
       }
 
-      console.log(query);
-
       $.getJSON(GETWEATHER_API, query, function(data) {
-
-        console.log(data);
 
         let weatherInfo = data.data.map(item =>
 
           renderWeatherResults(item));
-
-        console.log(weatherInfo)
 
         $('.js-weather-forecast').html(weatherInfo);
 
@@ -109,8 +99,6 @@ function fetchAllData(userValue) {
       });
     }
   }).fail(function(err) {
-
-    console.log("Handle Geocode API Error:", err)
 
     $('.js-error-handle').html(`<p>Try that location again</p>`).removeClass('hidden')
     return;
@@ -161,9 +149,21 @@ function createMap(coords, trails) {
 };
 
 function renderResults(item) {
-
   if (item.imgSmallMed === "") {
-    item.imgSmallMed = "https://www.reaganfoundation.org/umbraco/ucommerce/images/ui/image_not_found.jpg"
+    let defImg = [
+      "https://images.unsplash.com/photo-1501425359013-96058e410cfc?auto=format&fit=crop&w=1057&q=80",
+      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1053&q=80",
+      "https://images.unsplash.com/photo-1486210284477-e900ad8a6820?auto=format&fit=crop&w=1052&q=80",
+      "https://images.unsplash.com/photo-1500964757637-c85e8a162699?auto=format&fit=crop&w=1078&q=80",
+      "https://images.unsplash.com/photo-1478555718543-a87aa261dbc4?auto=format&fit=crop&w=967&q=80",
+      "https://images.unsplash.com/photo-1499872995989-56985d47da53?auto=format&fit=crop&w=1052&q=80",
+      "https://images.unsplash.com/photo-1504193902866-27cfb5aafcc8?auto=format&fit=crop&w=1050&q=80",
+      "https://images.unsplash.com/photo-1445307806294-bff7f67ff225?auto=format&fit=crop&w=1053&q=80",
+      "https://images.unsplash.com/photo-1445207966278-0a0a65a2047b?auto=format&fit=crop&w=1500&q=80",
+      "https://images.unsplash.com/photo-1445020902115-024a045d4552?auto=format&fit=crop&w=967&q=80"
+    ]
+    let newImgSrc = defImg[Math.floor(Math.random()*defImg.length)]
+    item.imgSmallMed = newImgSrc
   }
 
   return `
