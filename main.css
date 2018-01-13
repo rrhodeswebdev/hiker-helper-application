@@ -5,15 +5,17 @@
 
 body {
   font-family: "Roboto";
+}
+
+.start-section {
+  position: relative;
   background-image: url("https://images.unsplash.com/photo-1450562624248-869a3ec195f1?auto=format&fit=crop&w=1500&q=80");
   background-position: center;
   background-attachment: fixed;
   background-repeat: none;
   background-size: cover;
-}
-
-.start-section {
-  position: relative;
+  width: 100%;
+  height: 100vh;
 }
 
 .initial-view {
@@ -22,7 +24,7 @@ body {
   left: 50%;
   width: 600px;
   height: 400px;
-  margin: 120px 0 0 -300px;
+  transform: translate(-50%, -50%);
   background-color: white;
 }
 
