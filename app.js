@@ -8,6 +8,7 @@ const GETWEATHER_API = "https://api.weatherbit.io/v2.0/forecast/daily"
 function userSubmitData() {
   $('.js-search-form').on('click', '.js-submit-btn', function(event) {
     event.preventDefault();
+    $('#map').removeClass('hidden')
 
     let userValue = $('#input-field').val();
 
@@ -70,7 +71,7 @@ function fetchAllData(userValue) {
             lon: lon
           }, data.trails);
         };
-      }).fail(function(err){
+      }).fail(function(err) {
         console.log("Handle Trail API Error", err);
         $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
         return;
@@ -98,7 +99,7 @@ function fetchAllData(userValue) {
 
         $('.js-weather-forecast').html(weatherInfo);
 
-      }).fail(function(err){
+      }).fail(function(err) {
         console.log("Handle Weather API Error", err)
         $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
         return;
@@ -183,11 +184,11 @@ function renderWeatherResults(item) {
   return `
     <div class="daily-forecast">
       <img width="100px" height="100px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png"></img>
-      <h3>${item.datetime}</h3>
-      <p>High: ${item.max_temp.toFixed()} F</p>
-      <p>Low: ${item.min_temp.toFixed()} F</p>
-      <p>${item.weather.description}</p>
-      <p>Chance of Precipitation: ${item.pop}%</p>
+      <h3 class="weather-text">${item.datetime}</h3>
+      <p class="weather-text">High: ${item.max_temp.toFixed()} F</p>
+      <p class="weather-text">Low: ${item.min_temp.toFixed()} F</p>
+      <p class="weather-text">${item.weather.description}</p>
+      <p class="weather-text">Chance of Precipitation: ${item.pop}%</p>
     </div>
   `
 }
