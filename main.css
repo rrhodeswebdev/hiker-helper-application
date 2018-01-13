@@ -100,8 +100,8 @@ button {
 }
 
 .individual-trail {
-  float: left;
-  display: inline-block;
+  flex: auto;
+  height: auto;
   width: 30%;
   padding: 10px;
   margin: 10px;
@@ -128,4 +128,10 @@ button {
 .individual-trail p img {
   max-width: 100%;
   margin: 0 auto;
+}
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
