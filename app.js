@@ -57,7 +57,7 @@ function fetchAllData(userValue) {
             lat: lat,
             lon: lon
           }, data.trails);
-          $('.js-search-results').html(`<p class="no-trails-text">No trails found near that location<p><br/><button class="search-again-btn"><a href="#search-banner">Try Another Location</a></button>`)
+          $('.js-search-results').html(`<p class="no-trails-text">No trails found near that location<p>`)
           $('.js-weather-forecast').addClass('hidden')
         } else {
           let trailInfo = data.trails.map(item =>
