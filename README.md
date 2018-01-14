@@ -1,8 +1,11 @@
 Hiker Helper - Find your weekend hiking trail
 
 Screenshots:
+Desktop Landing Page
 ![hiker-helper-main-desktop](https://user-images.githubusercontent.com/30883298/34921205-1bdf6286-f94d-11e7-84b2-ca90e613ad09.png)
+Desktop Map and Weather Section
 ![hiker-helper-map-weather-desktop](https://user-images.githubusercontent.com/30883298/34921216-2bd1508c-f94d-11e7-8f89-9a21013b6a94.png)
+Desktop Trail Listing
 ![hiker-helper-trail-list-desktop](https://user-images.githubusercontent.com/30883298/34921220-36e2bb00-f94d-11e7-806b-dd292a2e753e.png)
 
 Summary:
