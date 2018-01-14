@@ -77,7 +77,15 @@
   and (-webkit-min-device-pixel-ratio: 2) {
 
     p {
-      font-size: 24px;
+      font-size: 32px;
+    }
+
+    .individual-trail h2 {
+      font-size: 48px;
+    }
+
+    .daily-forecast h3 {
+      font-size: 48px;
     }
 
     .start-section {
@@ -130,7 +138,7 @@
     }
 
     .weather-message h2 {
-      font-size: 66px;
+      font-size: 74px;
     }
 
     .weather-area {
@@ -159,7 +167,7 @@
     }
 
     .trails-near-text {
-      font-size: 66px;
+      font-size: 74px;
     }
 }
 
