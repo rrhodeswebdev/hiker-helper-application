@@ -172,9 +172,21 @@
 }
 
 @media screen
-  and (device-width: 360px)
-  and (device-height: 640px)
-  and (-webkit-device-pixel-ratio: 4) {
+  and (min-device-width: 360px)
+  and (max-device-width: 640px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+
+    p {
+      font-size: 32px;
+    }
+
+    .individual-trail h2 {
+      font-size: 48px;
+    }
+
+    .daily-forecast h3 {
+      font-size: 48px;
+    }
 
     .start-section {
       display: flex;
@@ -196,6 +208,19 @@
     input {
       width: 80%;
       height: 50px;
+      font-size: 36px;
+    }
+
+    button {
+      width: 30%;
+      height: 70px;
+      font-size: 36px;
+    }
+
+    #map {
+      width: 100%;
+      height: 600px;
+      box-sizing: border-box;
     }
 
     .initial-view {
@@ -213,7 +238,7 @@
     }
 
     .weather-message h2 {
-      font-size: 66px;
+      font-size: 74px;
     }
 
     .weather-area {
@@ -234,12 +259,14 @@
 
     .map-area {
       width: 100%;
+      height: 800px;
       justify-content: center;
       align-items: center;
+      box-sizing: border-box;
+      margin: 0;
     }
 
     .trails-near-text {
-      font-size: 66px;
+      font-size: 74px;
     }
-
 }
