@@ -1,7 +1,6 @@
 Hiker Helper - Find your weekend hiking trail
 
 Screenshots:
-![Main Desktop](https://imgur.com/yILns7q "Landing Page Screen on Desktop")
 
 Summary:
 Hiker Helper is a simple app designed to help users find hiking trail informtaion in a specific area. A user simply has to input a location (city, landmark, address, or national park) and the application will provide a map with trails in that area, along with a 5 day forecast and the list of trails. 
