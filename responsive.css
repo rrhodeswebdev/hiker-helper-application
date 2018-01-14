@@ -1,41 +1,72 @@
-@media screen and (max-width: 499px) {
+/* ---Mobile--- */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+
   .start-section {
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: white;
   }
+
+  .start-text h1 {
+    font-size: 102px;
+  }
+
+  .start-text h2 {
+    font-size: 54px;
+  }
+
+  .start-text p {
+    font-size: 36px;
+  }
+
+  input {
+    width: 80%;
+    height: 50px;
+  }
+
   .initial-view {
     width: 100%;
-    background-color: white;
+    height: 550px;
   }
+
   .middle-section {
     flex-wrap: wrap;
   }
+
   .individual-trail {
     width: 100%;
     margin: 20px 50px;
   }
+
   .weather-message h2 {
     font-size: 66px;
   }
+
   .weather-area {
-    margin-top: 50px;
+    margin-top: 60px;
   }
+
   .weather-forecast {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   .daily-forecast {
     width: 100%;
     text-align: center;
     margin: 10px 0;
   }
-}
 
-@media screen and (min-width: 500px) and (max-width: 799px) {
-  .individual-trail {
-    width: 45%;
+  .map-area {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .trails-near-text {
+    font-size: 66px;
   }
 }
