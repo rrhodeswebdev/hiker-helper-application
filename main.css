@@ -76,6 +76,7 @@ button {
   display: flex;
   flex-wrap: nowrap;
   margin: 40px 0;
+  width: 100%;
 }
 
 .map-area {
@@ -134,7 +135,7 @@ button {
 .weather-forecast {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   margin: 20px;
   padding: 20px;

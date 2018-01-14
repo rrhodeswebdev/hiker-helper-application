@@ -6,14 +6,14 @@ const GETWEATHER_API = "https://api.weatherbit.io/v2.0/forecast/daily"
 
 //Capture user input, which should be a location
 function userSubmitData() {
-  $('.js-submit-btn').click(function(event) {
+  $('.js-search-form').on('click', '.js-submit-btn', function(event) {
     event.preventDefault();
     $('section').removeClass('hidden')
-
+    $('html, body').animate({
+    'scrollTop' : $("#first-section").position().top
+}, 1500);
     let userValue = $('#input-field').val();
-
     fetchAllData(userValue);
-
     userValue = $('#input-field').val("");
   })
 }
@@ -21,24 +21,18 @@ function userSubmitData() {
 //API requests
 
 function fetchAllData(userValue) {
-
   $('.search-message').html(`<p class="trails-near-text">Trails near ${userValue}</p>`).removeClass('hidden')
-
   const query = {
     address: `${userValue}`,
     key: "AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4"
   }
-
   $.getJSON(GEOCODE_API, query, function(data) {
-
     if (data.status === "ZERO_RESULTS") {
       $('.js-error-handle').html('That location must be lost...try again').removeClass('hidden')
       return;
     } else {
-
       let lat = data.results[0].geometry.location.lat;
       let lon = data.results[0].geometry.location.lng;
-
       const newQuery = {
         key: "200202949-be5202662091a9dc38356c0c802cd058",
         lat: lat,
@@ -46,9 +40,7 @@ function fetchAllData(userValue) {
         maxResults: 500,
         maxDistance: 10
       }
-
       $.getJSON(GETTRAIL_API, newQuery, function(data) {
-
         if (data.trails.length === 0) {
           createMap({
             lat: lat,
@@ -57,13 +49,9 @@ function fetchAllData(userValue) {
           $('.js-search-results').html(`<p class="no-trails-text">No trails found near that location<p><br/><button class="search-again-btn"><a href="#search-banner">Try Another Location</a></button>`)
           $('.js-weather-forecast').addClass('hidden')
         } else {
-
           let trailInfo = data.trails.map(item =>
-
             renderResults(item));
-
           $('.js-search-results').html(trailInfo);
-
           createMap({
             lat: lat,
             lon: lon
@@ -74,7 +62,6 @@ function fetchAllData(userValue) {
         $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
         return;
       })
-
       const query = {
         key: "561f14cf5f16425a98fb0f2ce6cfe344",
         units: "I",
@@ -82,15 +69,10 @@ function fetchAllData(userValue) {
         lat: lat,
         lon: lon
       }
-
       $.getJSON(GETWEATHER_API, query, function(data) {
-
         let weatherInfo = data.data.map(item =>
-
           renderWeatherResults(item));
-
         $('.js-weather-forecast').html(weatherInfo);
-
       }).fail(function(err) {
         console.log("Handle Weather API Error", err)
         $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
@@ -98,7 +80,6 @@ function fetchAllData(userValue) {
       });
     }
   }).fail(function(err) {
-
     $('.js-error-handle').html(`<p>Try that location again</p>`).removeClass('hidden')
     return;
   })
@@ -113,12 +94,10 @@ function createMap(coords, trails) {
         lat: coords.lat,
         lng: coords.lon
       };
-
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: myLatLng
       });
-
       trails.forEach(trail => {
         var marker = new google.maps.Marker({
           position: {
@@ -128,7 +107,6 @@ function createMap(coords, trails) {
           map: map,
           title: trail.name
         })
-
         var trailMarkerContent = `
           <div class="trail-marker">
             <a href="#${trail.id}"><h3>${trail.name}</h3></a>
@@ -136,7 +114,6 @@ function createMap(coords, trails) {
             <pclass="marker-p">Rating: ${trail.stars} out of 5</p>
           </div>
         `
-
         var infowindow = new google.maps.InfoWindow({
           content: trailMarkerContent
         });
@@ -164,10 +141,9 @@ function renderResults(item) {
       "https://images.unsplash.com/photo-1446210050316-7c556e3aade0?auto=format&fit=crop&w=967&q=80",
       "https://images.unsplash.com/photo-1420802498636-9d647b43d2eb?auto=format&fit=crop&w=1050&q=80"
     ]
-    let newImgSrc = defImg[Math.floor(Math.random()*defImg.length)]
+    let newImgSrc = defImg[Math.floor(Math.random() * defImg.length)]
     item.imgSmallMed = newImgSrc
   }
-
   return `
     <div class="individual-trail" id="${item.id}">
       <h2 class="trail-text-info">${item.name}</h2>

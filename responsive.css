@@ -1,0 +1,41 @@
+@media screen and (max-width: 499px) {
+  .start-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  .initial-view {
+    width: 100%;
+    background-color: white;
+  }
+  .middle-section {
+    flex-wrap: wrap;
+  }
+  .individual-trail {
+    width: 100%;
+    margin: 20px 50px;
+  }
+  .weather-message h2 {
+    font-size: 66px;
+  }
+  .weather-area {
+    margin-top: 50px;
+  }
+  .weather-forecast {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .daily-forecast {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 799px) {
+  .individual-trail {
+    width: 45%;
+  }
+}
