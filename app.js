@@ -8,7 +8,6 @@ const GETWEATHER_API = "https://api.weatherbit.io/v2.0/forecast/daily"
 function userSubmitData() {
   $('.js-search-form').on('click', '.js-submit-btn', function(event) {
     event.preventDefault();
-    $('section').removeClass('hidden')
     $('html, body').animate({
     'scrollTop' : $("#first-section").position().top
 }, 1500);
@@ -21,16 +20,28 @@ function userSubmitData() {
 //API requests
 
 function fetchAllData(userValue) {
-  $('.search-message').html(`<p class="trails-near-text">Trails near ${userValue}</p>`).removeClass('hidden')
+
   const query = {
     address: `${userValue}`,
     key: "AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4"
   }
   $.getJSON(GEOCODE_API, query, function(data) {
     if (data.status === "ZERO_RESULTS") {
-      $('.js-error-handle').html('That location must be lost...try again').removeClass('hidden')
+      $('.js-errors-msgs').removeClass('hidden')
+      $('.js-error-handle').html('That location must be lost...try again')
+      $('.js-middle-section').addClass('hidden')
+      $('.js-results').addClass('hidden')
+      $('.js-search-again').addClass('hidden')
       return;
     } else {
+
+      $('.js-errors-msgs').addClass('hidden')
+      $('.js-middle-section').removeClass('hidden')
+      $('.js-results').removeClass('hidden')
+      $('.js-search-again').removeClass('hidden')
+
+      $('.search-message').html(`<p class="trails-near-text">Trails near ${userValue}</p>`).removeClass('hidden')
+
       let lat = data.results[0].geometry.location.lat;
       let lon = data.results[0].geometry.location.lng;
       const newQuery = {
