@@ -11,7 +11,7 @@ Desktop Trail Listing
 ![hiker-helper-trail-list-desktop](https://user-images.githubusercontent.com/30883298/34921220-36e2bb00-f94d-11e7-806b-dd292a2e753e.png)
 
 Mobile Main
-![hiker-helper-main-mobile](https://user-images.githubusercontent.com/30883298/34921252-b7eb6d8c-f94d-11e7-9e71-0b7578d667a7.PNG)
+![hiker-helper-main-mobile](https://user-images.githubusercontent.com/30883298/34921368-26c8e3fa-f94f-11e7-947b-af17ba0a3c15.png)
 
 Mobile Map and Weather Section
 ![hiker-helper-map-weather-mobile](https://user-images.githubusercontent.com/30883298/34921267-cc1c91e6-f94d-11e7-89ac-602adcfd0b7e.PNG)
