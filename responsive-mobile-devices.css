@@ -76,6 +76,10 @@
   and (max-device-width: 667px)
   and (-webkit-min-device-pixel-ratio: 2) {
 
+    p {
+      font-size: 24px;
+    }
+
     .start-section {
       display: flex;
       justify-content: center;
@@ -96,6 +100,18 @@
     input {
       width: 80%;
       height: 50px;
+      font-size: 36px;
+    }
+
+    button {
+      width: 30%;
+      height: 70px;
+      font-size: 36px;
+    }
+
+    #map {
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .initial-view {
@@ -136,6 +152,8 @@
       width: 100%;
       justify-content: center;
       align-items: center;
+      box-sizing: border-box;
+      margin: 0;
     }
 
     .trails-near-text {
