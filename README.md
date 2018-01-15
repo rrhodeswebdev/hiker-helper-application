@@ -9,7 +9,7 @@
 <p>![hiker-helper-map-weather-desktop](https://user-images.githubusercontent.com/30883298/34921216-2bd1508c-f94d-11e7-8f89-9a21013b6a94.png)</p>
 <p>![hiker-helper-map-weather-mobile](https://user-images.githubusercontent.com/30883298/34921390-6ecf5bd4-f94f-11e7-8d9e-9d07f7e68f48.png)</p>
 
-<p>Trail Listing</p>
+<h3>Trail Listing</h3>
 <p>![hiker-helper-trail-list-desktop](https://user-images.githubusercontent.com/30883298/34921220-36e2bb00-f94d-11e7-806b-dd292a2e753e.png)</p>
 <p>![hiker-helper-trail-list-mobile](https://user-images.githubusercontent.com/30883298/34921393-7809c48c-f94f-11e7-9fcc-c0ffedcd858d.png)</p>
 
