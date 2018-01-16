@@ -1,0 +1,211 @@
+@media only screen and (max-width: 480px) {
+
+  .start-section {
+    display: flex;
+    justify-content: center;
+  }
+
+  .start-text h1 {
+    font-size: 48px;
+  }
+
+  .start-text h2 {
+    font-size: 24px;
+  }
+
+  .start-text p {
+    font-size: 18px;
+  }
+
+  input {
+    width: 80%;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 24px;
+  }
+
+  .initial-view {
+    width: 100%;
+    height: auto;
+  }
+
+  .middle-section {
+    flex-wrap: wrap;
+  }
+
+  .individual-trail {
+    width: 100%;
+    margin: 20px 50px;
+  }
+
+  .weather-message h2 {
+    font-size: 28px;
+  }
+
+  .weather-area {
+    margin-top: 30px;
+  }
+
+  .weather-forecast {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+
+  .daily-forecast {
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+
+  .map-area {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  #map {
+    width: 100%;
+  }
+
+  .trails-near-text {
+    font-size: 28px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 900px) {
+
+  .start-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .start-text h1 {
+    font-size: 48px;
+  }
+
+  .start-text h2 {
+    font-size: 24px;
+  }
+
+  .start-text p {
+    font-size: 18px;
+  }
+
+  input {
+    width: 80%;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 24px;
+  }
+
+  .initial-view {
+    width: 100%;
+    height: auto;
+  }
+
+  .middle-section {
+    flex-wrap: wrap;
+  }
+
+  .map-area {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  #map {
+    width: 100%;
+  }
+
+  .weather-message h2 {
+    font-size: 28px;
+    margin-top: 20px;
+  }
+
+  .weather-forecast {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .weather-area {
+    margin-top: 20px;
+  }
+
+  .daily-forecast {
+    width: 30%;
+    text-align: center;
+    margin: 5px 0;
+    box-sizing: border-box;
+  }
+
+  .individual-trail {
+    width: 45%;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+}
+
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+
+  .middle-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .weather-message {
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  .weather-forecast {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .weather-area {
+    justify-content: center;
+  }
+
+  .daily-forecast {
+    width: 16%;
+  }
+
+  .search-message {
+    justify-content: center;
+  }
+
+  .trails-near-text {
+    text-align: center;
+  }
+
+  .map-area {
+    width: 100%;
+  }
+
+  #map {
+    width: 90%;
+    height: 500px;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}

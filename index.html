@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8" content="">
+<head lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hiker Helper</title>
   <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="responsive-mobile-devices.css">
-  <link rel="stylesheet" href="responsive-tablet-devices.css">
+  <link rel="stylesheet" href="responsive.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 </head>
 
 <body>
-
   <header class="start-section" role="banner" id="search-banner">
     <div class="initial-view">
       <div class="start-text">
@@ -22,7 +21,7 @@
       <div class="js-search-form-section search-section">
         <form class="js-search-form search-form" action="index.html">
           <label for="searchForm">
-          <input type="text" placeholder="Find trails near..." id="input-field">
+          <input type="text" placeholder="Find trails near..." id="input-field" aria-label="searchForm">
         </label>
           <br>
           <button type="submit" name="button" class="js-submit-btn submit-btn">Find Trails</button>
@@ -31,13 +30,19 @@
     </div>
   </header>
 
+  <!--Main Section-->
+
+  <!--Error Message Handling Section-->
+
   <main role="main" id="first-section">
-    <section class="js-errors-msgs hidden">
+    <section role="region" class="js-errors-msgs hidden">
       <div class="js-error-handle error-handle">
       </div>
     </section>
 
-    <section class="js-middle-section hidden">
+    <!--Map Section-->
+
+    <section role="region" class="js-middle-section hidden">
       <div class="middle-section">
         <div class="map-area">
           <div class="search-message">
@@ -45,6 +50,9 @@
           <div id="map">
           </div>
         </div>
+
+        <!--Weather Section-->
+
         <div class="weather-area">
           <div class="weather-message">
             <h2>5 Day Forecast</h2>
@@ -55,29 +63,29 @@
       </div>
     </section>
 
-    <section class="js-results hidden">
+    <!--Trail Listing Section-->
+
+    <section role="region" class="js-results hidden">
       <div class="js-search-results search-results">
       </div>
     </section>
 
-    <section class="js-search-again hidden">
+    <!--Search Again Section-->
+
+    <section role="region" class="js-search-again hidden">
       <div class="search-again">
         <button class="search-again-btn"><a href="#search-banner">Search Again</a></button>
       </div>
     </section>
 
-    <footer>
+    <!--JavaScripts Section-->
 
-    </footer>
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK7JalgtMJ-kPgZTM_5iCmZGxMv4y-w58" async defer></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK7JalgtMJ-kPgZTM_5iCmZGxMv4y-w58" async defer></script>
-
-    <script type="text/javascript" src="app.js">
-    </script>
-  </main>
-</body>
-
+      <script type="text/javascript" src="app.js">
+      </script>
+    </main>
+  </body>
 </html>
