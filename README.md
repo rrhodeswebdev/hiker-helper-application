@@ -5,8 +5,8 @@
 
 <h2>Screenshots:</h2>
 <h3>Landing Page</h3>
-<p>![hiker-helper-main-desktop](https://user-images.githubusercontent.com/30883298/34921205-1bdf6286-f94d-11e7-84b2-ca90e613ad09.png)</p>
-<p>![hiker-helper-main-mobile](https://user-images.githubusercontent.com/30883298/34921368-26c8e3fa-f94f-11e7-947b-af17ba0a3c15.png)</p>
+<p>![hiker-helper-main-desktop](https://user-images.githubusercontent.com/30883298/34969902-291bd1f8-fa3f-11e7-888d-e2928272a307.png)</p>
+<p>![hiker-helper-main-mobile](https://user-images.githubusercontent.com/30883298/34969915-373a79f6-fa3f-11e7-80d8-7b98145bdaf0.png)</p>
 
 <h3>Map and Weather Section</h3>
 <p>![hiker-helper-map-weather-desktop](https://user-images.githubusercontent.com/30883298/34921216-2bd1508c-f94d-11e7-8f89-9a21013b6a94.png)</p>
