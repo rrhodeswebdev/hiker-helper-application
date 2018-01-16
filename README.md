@@ -1,4 +1,4 @@
-Hiker Helper - Find your weekend hiking trail
+<h1>Hiker Helper - Find your weekend hiking trail</h1>
 
 Screenshots:
 Landing Page
