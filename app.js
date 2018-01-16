@@ -18,14 +18,16 @@ function userSubmitData() {
 }
 
 //API requests
-
 function fetchAllData(userValue) {
 
+//Set User Value
   const query = {
     address: `${userValue}`,
     key: "AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4"
   }
   $.getJSON(GEOCODE_API, query, function(data) {
+
+//Determine if search is a valid location, if not show no location found message
     if (data.status === "ZERO_RESULTS") {
       $('.js-errors-msgs').removeClass('hidden')
       $('.js-error-handle').html('That location must be lost...try again')
@@ -33,17 +35,19 @@ function fetchAllData(userValue) {
       $('.js-results').addClass('hidden')
       $('.js-search-again').addClass('hidden')
       return;
+//If search returned a result, show both sections
     } else {
-
       $('.js-errors-msgs').addClass('hidden')
       $('.js-middle-section').removeClass('hidden')
       $('.js-results').removeClass('hidden')
       $('.js-search-again').removeClass('hidden')
-
       $('.search-message').html(`<p class="trails-near-text">Trails near ${userValue}</p>`).removeClass('hidden')
 
+//Set lat and lng coordinates from GEOCODE API
       let lat = data.results[0].geometry.location.lat;
       let lon = data.results[0].geometry.location.lng;
+
+//Build query for Trail API
       const newQuery = {
         key: "200202949-be5202662091a9dc38356c0c802cd058",
         lat: lat,
@@ -51,7 +55,11 @@ function fetchAllData(userValue) {
         maxResults: 500,
         maxDistance: 10
       }
+
+//Call Trail API
       $.getJSON(GETTRAIL_API, newQuery, function(data) {
+
+//Handling no trails returned for location
         if (data.trails.length === 0) {
           createMap({
             lat: lat,
@@ -59,7 +67,12 @@ function fetchAllData(userValue) {
           }, data.trails);
           $('.js-search-results').html(`<p class="no-trails-text">No trails found near that location<p>`)
           $('.js-weather-forecast').addClass('hidden')
-        } else {
+        }
+
+//Handling trails that are returned
+         else {
+
+//Call Rendering function for Trails
           let trailInfo = data.trails.map(item =>
             renderResults(item));
           $('.js-search-results').html(trailInfo);
@@ -68,11 +81,15 @@ function fetchAllData(userValue) {
             lon: lon
           }, data.trails);
         };
+
+//Handing Request Errors for Trail API
       }).fail(function(err) {
         console.log("Handle Trail API Error", err);
         $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
         return;
       })
+
+//Weather API query object
       const query = {
         key: "561f14cf5f16425a98fb0f2ce6cfe344",
         units: "I",
@@ -80,16 +97,24 @@ function fetchAllData(userValue) {
         lat: lat,
         lon: lon
       }
+
+//Calling Weather API
       $.getJSON(GETWEATHER_API, query, function(data) {
+
+//Call Rendering function for Weather
         let weatherInfo = data.data.map(item =>
           renderWeatherResults(item));
         $('.js-weather-forecast').html(weatherInfo);
+
+//Handling Errors with Weather API Request
       }).fail(function(err) {
         console.log("Handle Weather API Error", err)
         $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
         return;
       });
     }
+
+//Handing Errors with GEOcode API Request
   }).fail(function(err) {
     $('.js-error-handle').html(`<p>Try that location again</p>`).removeClass('hidden')
     return;
@@ -100,15 +125,21 @@ function fetchAllData(userValue) {
 
 function createMap(coords, trails) {
   $('#map').append(
+
+//Initializing Map
     function initMap() {
       var myLatLng = {
         lat: coords.lat,
         lng: coords.lon
       };
+
+//Setting Center Point on Map
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: myLatLng
       });
+
+//Create marker for each trail
       trails.forEach(trail => {
         var marker = new google.maps.Marker({
           position: {
@@ -118,6 +149,8 @@ function createMap(coords, trails) {
           map: map,
           title: trail.name
         })
+
+//Create content for each trail marker
         var trailMarkerContent = `
           <div class="trail-marker">
             <a href="#${trail.id}"><h3>${trail.name}</h3></a>
@@ -135,7 +168,10 @@ function createMap(coords, trails) {
     });
 };
 
+//Rendering Trail Results
 function renderResults(item) {
+
+//Create an array of default images to replace results with no image
   if (item.imgSmallMed === "") {
     let defImg = [
       "https://images.unsplash.com/photo-1501425359013-96058e410cfc?auto=format&fit=crop&w=1057&q=80",
@@ -152,9 +188,13 @@ function renderResults(item) {
       "https://images.unsplash.com/photo-1446210050316-7c556e3aade0?auto=format&fit=crop&w=967&q=80",
       "https://images.unsplash.com/photo-1420802498636-9d647b43d2eb?auto=format&fit=crop&w=1050&q=80"
     ]
+
+//Setting random image as default if no image is returned from the API request
     let newImgSrc = defImg[Math.floor(Math.random() * defImg.length)]
     item.imgSmallMed = newImgSrc
   }
+
+//HTML to be rendered for trails
   return `
     <div class="individual-trail" id="${item.id}">
       <h2 class="trail-text-info">${item.name}</h2>
@@ -170,6 +210,7 @@ function renderResults(item) {
   `
 };
 
+//Render Weather Results
 function renderWeatherResults(item) {
   return `
     <div class="daily-forecast">
