@@ -18,5 +18,10 @@ Desktop Trail Listing
 ![hiker-helper-trail-list-desktop](https://user-images.githubusercontent.com/30883298/34921220-36e2bb00-f94d-11e7-806b-dd292a2e753e.png)
 ![hiker-helper-trail-list-mobile](https://user-images.githubusercontent.com/30883298/34921393-7809c48c-f94f-11e7-9fcc-c0ffedcd858d.png)
 
-Technology Used:
-HTML/CSS/JavaScript/jQuery
+<h2>Technology Used:</h2>
+<ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+  <li>jQuery</li>
+</ul>
