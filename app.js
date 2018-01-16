@@ -159,7 +159,7 @@ function renderResults(item) {
     <div class="individual-trail" id="${item.id}">
       <h2 class="trail-text-info">${item.name}</h2>
       <p class="trail-text-info">${item.location}</p>
-      <p><img src="${item.imgSmallMed}"></p>
+      <p><img src="${item.imgSmallMed}" alt="${item.name}"></p>
       <p class="trail-text-info">${item.summary}</p>
       <p class="trail-text-info">Distance: <b>${item.length} miles</b></p>
       <p class="trail-text-info">High: <b>${item.low}'</b> Low: <b>${item.high}'</b></p>
@@ -173,7 +173,7 @@ function renderResults(item) {
 function renderWeatherResults(item) {
   return `
     <div class="daily-forecast">
-      <img width="75px" height="75px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png"></img>
+      <img width="75px" height="75px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png" alt="${item.weather.description}"></img>
       <h3 class="weather-text">${item.datetime}</h3>
       <p class="weather-text">High: ${item.max_temp.toFixed()} F Low: ${item.min_temp.toFixed()} F</p>
       <p class="weather-text">${item.weather.description}</p>
