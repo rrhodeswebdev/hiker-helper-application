@@ -4,11 +4,11 @@
 <p>The application provides basic information for each listed trail. Some of this basic information includes the location of the trail, length of trail, ascent and descent, highest and lowest elevations, and a link to see more details on that trail.</p>
 
 <h2>Screenshots:</h2>
-<h3>Landing Page</h3>
+Landing Page
 <p>![hiker-helper-main-desktop](https://user-images.githubusercontent.com/30883298/34969902-291bd1f8-fa3f-11e7-888d-e2928272a307.png)</p>
 <p>![hiker-helper-main-mobile](https://user-images.githubusercontent.com/30883298/34969915-373a79f6-fa3f-11e7-80d8-7b98145bdaf0.png)</p>
 
-<h3>Map and Weather Section</h3>
+Map and Weather Section
 <p>![hiker-helper-map-weather-desktop](https://user-images.githubusercontent.com/30883298/34921216-2bd1508c-f94d-11e7-8f89-9a21013b6a94.png)</p>
 <p>![hiker-helper-map-weather-mobile](https://user-images.githubusercontent.com/30883298/34921390-6ecf5bd4-f94f-11e7-8d9e-9d07f7e68f48.png)</p>
 
