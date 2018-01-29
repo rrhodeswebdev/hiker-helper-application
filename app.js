@@ -10,11 +10,11 @@ function userSubmitData() {
   $('.js-search-form').on('click', '.js-submit-btn', function(event) {
     event.preventDefault();
     $('html, body').animate({
-    'scrollTop' : $("#first-section").position().top
+    'scrollTop' : $('#first-section').position().top
 }, 1500);
     let userValue = $('#input-field').val();
     fetchAllData(userValue);
-    userValue = $('#input-field').val("");
+    userValue = $('#input-field').val('');
   })
 }
 
@@ -29,7 +29,7 @@ function fetchAllData(userValue) {
   $.getJSON(GEOCODE_API, query, function(data) {
 
 //Determine if search is a valid location, if not show no location found message
-    if (data.status === "ZERO_RESULTS") {
+    if (data.status === 'ZERO_RESULTS') {
       $('.js-errors-msgs').removeClass('hidden')
       $('.js-error-handle').html('That location must be lost...try again')
       $('.js-middle-section').addClass('hidden')
@@ -50,7 +50,7 @@ function fetchAllData(userValue) {
 
 //Build query for Trail API
       const newQuery = {
-        key: "200202949-be5202662091a9dc38356c0c802cd058",
+        key: '200202949-be5202662091a9dc38356c0c802cd058',
         lat: lat,
         lon: lon,
         maxResults: 500,
@@ -92,8 +92,8 @@ function fetchAllData(userValue) {
 
 //Weather API query object
       const query = {
-        key: "561f14cf5f16425a98fb0f2ce6cfe344",
-        units: "I",
+        key: '561f14cf5f16425a98fb0f2ce6cfe344',
+        units: 'I',
         days: 5,
         lat: lat,
         lon: lon
@@ -109,7 +109,7 @@ function fetchAllData(userValue) {
 
 //Handling Errors with Weather API Request
       }).fail(function(err) {
-        console.log("Handle Weather API Error", err)
+        console.log('Handle Weather API Error', err)
         $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
         return;
       });
@@ -154,9 +154,9 @@ function createMap(coords, trails) {
 //Create content for each trail marker
         var trailMarkerContent = `
           <div class="trail-marker">
-            <a href="#${trail.id}"><h3>${trail.name}</h3></a>
-            <p class="marker-p">${trail.location}</p>
-            <pclass="marker-p">Rating: ${trail.stars} out of 5</p>
+            <a href='#${trail.id}'><h3>${trail.name}</h3></a>
+            <p class='marker-p'>${trail.location}</p>
+            <p class='marker-p'>Rating: ${trail.stars} out of 5</p>
           </div>
         `
         var infowindow = new google.maps.InfoWindow({
@@ -175,19 +175,19 @@ function renderResults(item) {
 //Create an array of default images to replace results with no image
   if (item.imgSmallMed === "") {
     let defImg = [
-      "https://images.unsplash.com/photo-1501425359013-96058e410cfc?auto=format&fit=crop&w=1057&q=80",
-      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1053&q=80",
-      "https://images.unsplash.com/photo-1486210284477-e900ad8a6820?auto=format&fit=crop&w=1052&q=80",
-      "https://images.unsplash.com/photo-1500964757637-c85e8a162699?auto=format&fit=crop&w=1078&q=80",
-      "https://images.unsplash.com/photo-1478555718543-a87aa261dbc4?auto=format&fit=crop&w=967&q=80",
-      "https://images.unsplash.com/photo-1499872995989-56985d47da53?auto=format&fit=crop&w=1052&q=80",
-      "https://images.unsplash.com/photo-1504193902866-27cfb5aafcc8?auto=format&fit=crop&w=1050&q=80",
-      "https://images.unsplash.com/photo-1445307806294-bff7f67ff225?auto=format&fit=crop&w=1053&q=80",
-      "https://images.unsplash.com/photo-1445207966278-0a0a65a2047b?auto=format&fit=crop&w=1500&q=80",
-      "https://images.unsplash.com/photo-1445020902115-024a045d4552?auto=format&fit=crop&w=967&q=80",
-      "https://images.unsplash.com/photo-1455741221562-726825b9cb2b?auto=format&fit=crop&w=1010&q=80",
-      "https://images.unsplash.com/photo-1446210050316-7c556e3aade0?auto=format&fit=crop&w=967&q=80",
-      "https://images.unsplash.com/photo-1420802498636-9d647b43d2eb?auto=format&fit=crop&w=1050&q=80"
+      'https://images.unsplash.com/photo-1501425359013-96058e410cfc?auto=format&fit=crop&w=1057&q=80',
+      'https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1053&q=80',
+      'https://images.unsplash.com/photo-1486210284477-e900ad8a6820?auto=format&fit=crop&w=1052&q=80',
+      'https://images.unsplash.com/photo-1500964757637-c85e8a162699?auto=format&fit=crop&w=1078&q=80',
+      'https://images.unsplash.com/photo-1478555718543-a87aa261dbc4?auto=format&fit=crop&w=967&q=80',
+      'https://images.unsplash.com/photo-1499872995989-56985d47da53?auto=format&fit=crop&w=1052&q=80',
+      'https://images.unsplash.com/photo-1504193902866-27cfb5aafcc8?auto=format&fit=crop&w=1050&q=80',
+      'https://images.unsplash.com/photo-1445307806294-bff7f67ff225?auto=format&fit=crop&w=1053&q=80',
+      'https://images.unsplash.com/photo-1445207966278-0a0a65a2047b?auto=format&fit=crop&w=1500&q=80',
+      'https://images.unsplash.com/photo-1445020902115-024a045d4552?auto=format&fit=crop&w=967&q=80',
+      'https://images.unsplash.com/photo-1455741221562-726825b9cb2b?auto=format&fit=crop&w=1010&q=80',
+      'https://images.unsplash.com/photo-1446210050316-7c556e3aade0?auto=format&fit=crop&w=967&q=80',
+      'https://images.unsplash.com/photo-1420802498636-9d647b43d2eb?auto=format&fit=crop&w=1050&q=80'
     ]
 
 //Setting random image as default if no image is returned from the API request
@@ -197,16 +197,16 @@ function renderResults(item) {
 
 //HTML to be rendered for trails
   return `
-    <div class="individual-trail" id="${item.id}">
-      <h2 class="trail-text-info">${item.name}</h2>
-      <p class="trail-text-info">${item.location}</p>
-      <p><img src="${item.imgSmallMed}" alt="${item.name}"></p>
-      <p class="trail-text-info">${item.summary}</p>
-      <p class="trail-text-info">Distance: <b>${item.length} miles</b></p>
-      <p class="trail-text-info">High: <b>${item.low}'</b> Low: <b>${item.high}'</b></p>
-      <p class="trail-text-info">Ascent: <b>${item.ascent}'</b> Descent: <b>${item.descent}'</b></p>
-      <p class="trail-text-info">Rating: ${item.stars} out of 5</p>
-      <p class="trail-text-info"><a href="${item.url}" target="_blank">See more details</a></p>
+    <div class='individual-trail' id="${item.id}">
+      <h2 class='trail-text-info'>${item.name}</h2>
+      <p class='trail-text-info'>${item.location}</p>
+      <p><img src='${item.imgSmallMed}' alt='${item.name}'></p>
+      <p class='trail-text-info'>${item.summary}</p>
+      <p class='trail-text-info'>Distance: <b>${item.length} miles</b></p>
+      <p class='trail-text-info'>High: <b>${item.high}'</b> Low: <b>${item.low}'</b></p>
+      <p class='trail-text-info'>Ascent: <b>${item.ascent}'</b> Descent: <b>${item.descent}'</b></p>
+      <p class='trail-text-info'>Rating: ${item.stars} out of 5</p>
+      <p class='trail-text-info'><a href='${item.url}' target='_blank'>See more details</a></p>
     </div>
   `
 };
@@ -214,12 +214,12 @@ function renderResults(item) {
 //Render Weather Results
 function renderWeatherResults(item) {
   return `
-    <div class="daily-forecast">
-      <img width="75px" height="75px" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png" alt="${item.weather.description}"></img>
-      <h3 class="weather-text">${item.datetime}</h3>
-      <p class="weather-text">High: ${item.max_temp.toFixed()} F Low: ${item.min_temp.toFixed()} F</p>
-      <p class="weather-text">${item.weather.description}</p>
-      <p class="weather-text">Chance of Precip: ${item.pop}%</p>
+    <div class='daily-forecast'>
+      <img width='75px' height='75px' src='https://weatherbit.io/static/img/icons/${item.weather.icon}.png' alt='${item.weather.description}'></img>
+      <h3 class='weather-text'>${item.datetime}</h3>
+      <p class='weather-text'>High: ${item.max_temp.toFixed()} F Low: ${item.min_temp.toFixed()} F</p>
+      <p class='weather-text'>${item.weather.description}</p>
+      <p class='weather-text'>Chance of Precip: ${item.pop}%</p>
     </div>
   `
 }
