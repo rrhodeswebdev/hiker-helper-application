@@ -1,7 +1,8 @@
 //API endpoints
-const GEOCODE_API = "https://maps.googleapis.com/maps/api/geocode/json"
-const GETTRAIL_API = "https://www.hikingproject.com/data/get-trails"
-const GETWEATHER_API = "https://api.weatherbit.io/v2.0/forecast/daily"
+const GEOCODE_API = 'https://maps.googleapis.com/maps/api/geocode/json'
+const GETTRAIL_API = 'https://www.hikingproject.com/data/get-trails'
+const GETWEATHER_API = 'https://api.weatherbit.io/v2.0/forecast/daily'
+const GEOLOCATION_API = 'https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAqTRTTS0l51REFUIOWfLJDMzZa5s7-kHc'
 
 
 //Capture user input, which should be a location
