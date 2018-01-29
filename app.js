@@ -24,7 +24,7 @@ function fetchAllData(userValue) {
 //Set User Value
   const query = {
     address: `${userValue}`,
-    key: "AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4"
+    key: 'AIzaSyCieNU3oVF-dQYP4iBWoQnc4hqA4zzd4i4'
   }
   $.getJSON(GEOCODE_API, query, function(data) {
 
@@ -66,7 +66,7 @@ function fetchAllData(userValue) {
             lat: lat,
             lon: lon
           }, data.trails);
-          $('.js-search-results').html(`<p class="no-trails-text">No trails found near that location<p>`)
+          $('.js-search-results').html(`<p class='no-trails-text'>No trails found near that location<p>`)
           $('.js-weather-forecast').addClass('hidden')
         }
 
@@ -85,7 +85,7 @@ function fetchAllData(userValue) {
 
 //Handing Request Errors for Trail API
       }).fail(function(err) {
-        console.log("Handle Trail API Error", err);
+        console.log('Handle Trail API Error', err);
         $('.js-error-handle').html(`<p>Sorry, we hiked into some technical issues. Please try again later.</p>`).removeClass('hidden')
         return;
       })
@@ -153,7 +153,7 @@ function createMap(coords, trails) {
 
 //Create content for each trail marker
         var trailMarkerContent = `
-          <div class="trail-marker">
+          <div class='trail-marker'>
             <a href='#${trail.id}'><h3>${trail.name}</h3></a>
             <p class='marker-p'>${trail.location}</p>
             <p class='marker-p'>Rating: ${trail.stars} out of 5</p>
@@ -173,7 +173,7 @@ function createMap(coords, trails) {
 function renderResults(item) {
 
 //Create an array of default images to replace results with no image
-  if (item.imgSmallMed === "") {
+  if (item.imgSmallMed === '') {
     let defImg = [
       'https://images.unsplash.com/photo-1501425359013-96058e410cfc?auto=format&fit=crop&w=1057&q=80',
       'https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=1053&q=80',
